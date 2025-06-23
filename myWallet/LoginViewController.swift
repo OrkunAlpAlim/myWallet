@@ -12,10 +12,14 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        // Klavye kapatma için dokunma hareketi ekleniyor
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
     }
-    
 
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
     /*
     // MARK: - Navigation
 
