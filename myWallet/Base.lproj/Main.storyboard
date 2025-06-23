@@ -21,7 +21,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Giriş Yap"/>
                                 <connections>
-                                    <action selector="loginButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="86W-el-Gfz"/>
+                                    <action selector="loginButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FUM-af-uwB"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TyC-dx-LUX">
@@ -29,7 +29,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Kayıt Ol"/>
                                 <connections>
-                                    <action selector="registerButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mjb-N5-m96"/>
+                                    <action selector="registerButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fMq-6Y-yGw"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="myWallet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="He1-pa-bDR">
@@ -82,6 +82,9 @@
                                 <rect key="frame" x="151" y="592" width="91" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Giriş Yap"/>
+                                <connections>
+                                    <action selector="loginButtonTapped:" destination="ie0-un-yXM" eventType="touchUpInside" id="sQ8-GL-U92"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Kullanıcı Adı" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rFD-o5-Tyi">
                                 <rect key="frame" x="101" y="454" width="190" height="34"/>
@@ -106,6 +109,10 @@
                             <constraint firstItem="Tof-G6-63N" firstAttribute="trailing" secondItem="rFD-o5-Tyi" secondAttribute="trailing" constant="102" id="l2T-NP-fc7"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="passwordTextField" destination="JJM-Lx-72M" id="y6D-Q4-yEh"/>
+                        <outlet property="usernameTextField" destination="rFD-o5-Tyi" id="dOO-k1-347"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lcS-5R-Xi5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -154,6 +161,9 @@
                                 <rect key="frame" x="155" y="684" width="83" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Kayıt Ol"/>
+                                <connections>
+                                    <action selector="registerButtonTapped:" destination="3P4-JX-L0h" eventType="touchUpInside" id="cKr-SE-hYB"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="VwP-3o-XQH"/>
@@ -182,6 +192,13 @@
                             <constraint firstItem="sRo-1B-GTR" firstAttribute="top" secondItem="VwP-3o-XQH" secondAttribute="top" constant="100" id="yjy-Vx-tdZ"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="confirmPasswordField" destination="lb7-rD-ytN" id="ah7-Co-7Yv"/>
+                        <outlet property="nameField" destination="Q9g-bn-gEV" id="xEM-x5-4F3"/>
+                        <outlet property="passwordField" destination="lZx-iO-1od" id="1AL-eo-3q6"/>
+                        <outlet property="surnameField" destination="Auk-FO-LrT" id="ma7-7Q-xm9"/>
+                        <outlet property="usernameField" destination="2CQ-6N-3tN" id="gKE-1X-L7U"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bJZ-9p-fob" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -204,6 +221,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="usd-vT-AxL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="67.938931297709928" y="-2.1126760563380285"/>
+        </scene>
+        <!--Home View Controller-->
+        <scene sceneID="JxI-Td-2HU">
+            <objects>
+                <viewController storyboardIdentifier="HomeViewController" id="z1U-6v-4zS" customClass="HomeViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6sb-z7-EiV">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="OSr-hi-09I"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dO4-g9-Wb8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="68" y="644"/>
         </scene>
     </scenes>
     <resources>
