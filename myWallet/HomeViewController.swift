@@ -72,8 +72,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                         let type = (data["type"] as? String ?? "").lowercased()
                         let amount = data["amount"] as? Double ?? 0.0
 
-                        // Sadece currentUsername ile otherUsername arasındaki işlemleri işle
-                        let involved = (from == currentUsername && to == otherUsername) || (from == otherUsername && to == currentUsername)
+                        let involved = (from == currentUsername && to == otherUsername) ||
+                                       (from == otherUsername && to == currentUsername)
                         if !involved { continue }
 
                         switch type {
@@ -93,12 +93,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                                 if from == currentUsername { balance -= amount }
                                 else if to == currentUsername { balance += amount }
 
-                            default:
-                                break
+                            default: break
                         }
                     }
 
-                    self.users.append(UserModel(name: name, surname: surname, balance: balance))
+                    self.users.append(UserModel(name: name, surname: surname, balance: balance, username: otherUsername))
+
+
                     totalBalance += balance
                     group.leave()
                 }
@@ -111,19 +112,18 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         }
     }
-    
+
     func startListeningForTransactions() {
-        guard let currentUsername = UserDefaults.standard.string(forKey: "currentUsername") else {
+        guard let _ = UserDefaults.standard.string(forKey: "currentUsername") else {
             print("[ERROR] - currentUsername bulunamadı.")
             return
         }
 
         Firestore.firestore().collection("transactions").addSnapshotListener { _, _ in
             print("[REALTIME] - İşlem değişikliği algılandı. Kullanıcılar güncelleniyor.")
-            self.fetchUsers() // Tüm kullanıcılar ve bakiyeler yeniden hesaplanır
+            self.fetchUsers()
         }
     }
-
 
     @objc func logoutTapped() {
         let alert = UIAlertController(title: "Çıkış Yap", message: "Emin misiniz?", preferredStyle: .alert)
@@ -154,7 +154,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     @objc func chatTapped() {
         print("[NAVIGATION] - Mesajlaşma ekranına geçiliyor")
-        // TODO: ChatViewController'a geçiş yapılacak
+        // TODO: Chat ekranı
     }
 
     // MARK: - TableView Delegate & DataSource
@@ -172,5 +172,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.detailTextLabel?.text = String(format: "%.2f ₺", user.balance)
         cell.detailTextLabel?.textColor = user.balance >= 0 ? .systemGreen : .systemRed
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedUser = users[indexPath.row]
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let detailVC = storyboard.instantiateViewController(withIdentifier: "UserDetailViewController") as! UserDetailViewController
+        detailVC.selectedUsername = selectedUser.username
+        detailVC.selectedFullName = "\(selectedUser.name) \(selectedUser.surname)"
+        navigationController?.pushViewController(detailVC, animated: true)
     }
 }

@@ -12,12 +12,20 @@ class TransactionViewController: UIViewController, UIPickerViewDelegate, UIPicke
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
+        
         print("[LOG] - Transaction ekranı yüklendi")
 
         userPicker.delegate = self
         userPicker.dataSource = self
 
         fetchUsers()
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 
     func fetchUsers() {
