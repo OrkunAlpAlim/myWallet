@@ -225,17 +225,44 @@
         <!--Home View Controller-->
         <scene sceneID="JxI-Td-2HU">
             <objects>
-                <viewController storyboardIdentifier="HomeViewController" id="z1U-6v-4zS" customClass="HomeViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewController" id="z1U-6v-4zS" customClass="HomeViewController" customModule="myWallet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6sb-z7-EiV">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="HUT-L2-Ht1">
+                                <rect key="frame" x="21" y="161" width="350" height="530"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HDs-g7-cvK">
+                                <rect key="frame" x="21" y="714" width="350" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="OSr-hi-09I"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="HUT-L2-Ht1" firstAttribute="leading" secondItem="HDs-g7-cvK" secondAttribute="leading" id="2jk-UY-ckr"/>
+                            <constraint firstItem="HDs-g7-cvK" firstAttribute="bottom" secondItem="OSr-hi-09I" secondAttribute="bottom" id="PcD-yS-u3y"/>
+                            <constraint firstItem="HUT-L2-Ht1" firstAttribute="centerX" secondItem="6sb-z7-EiV" secondAttribute="centerX" id="f7l-w8-LHH"/>
+                            <constraint firstItem="HUT-L2-Ht1" firstAttribute="leading" secondItem="OSr-hi-09I" secondAttribute="leading" constant="21" id="hwP-yB-XAs"/>
+                            <constraint firstItem="HUT-L2-Ht1" firstAttribute="top" secondItem="OSr-hi-09I" secondAttribute="top" constant="43" id="iOs-wF-7At"/>
+                            <constraint firstItem="HUT-L2-Ht1" firstAttribute="trailing" secondItem="HDs-g7-cvK" secondAttribute="trailing" id="kpy-AG-AmJ"/>
+                            <constraint firstItem="HUT-L2-Ht1" firstAttribute="centerY" secondItem="6sb-z7-EiV" secondAttribute="centerY" id="xMp-jq-DMC"/>
+                        </constraints>
                     </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="tableView" destination="HUT-L2-Ht1" id="REv-8W-1QN"/>
+                        <outlet property="totalLabel" destination="HDs-g7-cvK" id="BPK-FL-Q0C"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dO4-g9-Wb8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="68" y="644"/>
+            <point key="canvasLocation" x="67.938931297709928" y="643.66197183098598"/>
         </scene>
     </scenes>
     <resources>

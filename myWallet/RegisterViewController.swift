@@ -60,9 +60,14 @@ class RegisterViewController: UIViewController {
                 self.showAlert(message: "Kayıt başarısız: \(error.localizedDescription)")
                 print("[ERROR] - Firestore kayıt hatası: \(error.localizedDescription)")
             } else {
+                UserDefaults.standard.set(true, forKey: "isLoggedIn")
+                UserDefaults.standard.set(userId, forKey: "currentUserId")
+                print("[LOG] - currentUserId kaydedildi: \(userId)")
+                
                 self.showAlert(message: "Kayıt başarılı.") {
                     self.navigateToHome()
                 }
+                
                 print("[INFO] - Kayıt başarılı, ana sayfaya geçiliyor")
             }
         }

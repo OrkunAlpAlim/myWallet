@@ -41,6 +41,14 @@ class LoginViewController: UIViewController {
                     print("[ERROR] - Firestore hatası: \(error.localizedDescription)")
                 } else if let snapshot = snapshot, !snapshot.isEmpty {
                     print("[INFO] - Giriş başarılı")
+                    
+                    if let document = snapshot.documents.first {
+                            let userId = document.documentID
+                            UserDefaults.standard.set(true, forKey: "isLoggedIn")
+                            UserDefaults.standard.set(userId, forKey: "currentUserId")
+                            print("[LOG] - currentUserId kaydedildi: \(userId)")
+                        }
+                    
                     self.showAlert(message: "Giriş başarılı.") {
                         self.navigateToHome()
                     }
