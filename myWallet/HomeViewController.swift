@@ -13,7 +13,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         print("[LOG] - Home ekranı açıldı")
         setupNavigationBar()
         setupTableView()
-        fetchUsers()
+        startListeningForTransactions()
     }
 
     func setupNavigationBar() {
@@ -111,6 +111,19 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         }
     }
+    
+    func startListeningForTransactions() {
+        guard let currentUsername = UserDefaults.standard.string(forKey: "currentUsername") else {
+            print("[ERROR] - currentUsername bulunamadı.")
+            return
+        }
+
+        Firestore.firestore().collection("transactions").addSnapshotListener { _, _ in
+            print("[REALTIME] - İşlem değişikliği algılandı. Kullanıcılar güncelleniyor.")
+            self.fetchUsers() // Tüm kullanıcılar ve bakiyeler yeniden hesaplanır
+        }
+    }
+
 
     @objc func logoutTapped() {
         let alert = UIAlertController(title: "Çıkış Yap", message: "Emin misiniz?", preferredStyle: .alert)
