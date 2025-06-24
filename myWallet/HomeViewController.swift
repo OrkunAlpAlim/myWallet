@@ -18,27 +18,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     func setupNavigationBar() {
         self.navigationItem.hidesBackButton = true
-        self.title = "myWallet"
+        self.title = "Ana Sayfa"
 
-        let plusButton = UIBarButtonItem(
-            barButtonSystemItem: .add,
-            target: self,
-            action: #selector(plusTapped)
-        )
-
-        let chatButton = UIBarButtonItem(
-            image: UIImage(systemName: "message"),
-            style: .plain,
-            target: self,
-            action: #selector(chatTapped)
-        )
-
-        let logoutButton = UIBarButtonItem(
-            title: "Çıkış Yap",
-            style: .plain,
-            target: self,
-            action: #selector(logoutTapped)
-        )
+        let plusButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(plusTapped))
+        let chatButton = UIBarButtonItem(image: UIImage(systemName: "message"), style: .plain, target: self, action: #selector(chatTapped))
+        let logoutButton = UIBarButtonItem(title: "Çıkış Yap", style: .plain, target: self, action: #selector(logoutTapped))
 
         self.navigationItem.rightBarButtonItems = [plusButton, chatButton]
         self.navigationItem.leftBarButtonItem = logoutButton
@@ -53,8 +37,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         print("[LOG] - Kullanıcılar Firestore'dan çekiliyor...")
         let db = Firestore.firestore()
 
-        guard let currentUserId = UserDefaults.standard.string(forKey: "currentUserId") else {
-            print("[ERROR] - currentUserId bulunamadı.")
+        guard let currentUsername = UserDefaults.standard.string(forKey: "currentUsername") else {
+            print("[ERROR] - currentUsername bulunamadı.")
             return
         }
 
@@ -72,47 +56,51 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
             for doc in documents {
                 let data = doc.data()
-                let userId = doc.documentID
-                if userId == currentUserId { continue }
+                let otherUsername = data["username"] as? String ?? ""
+                if otherUsername == currentUsername { continue }
 
                 let name = data["name"] as? String ?? ""
                 let surname = data["surname"] as? String ?? ""
                 var balance: Double = 0.0
                 group.enter()
 
-                // İşlemleri paralel hesapla
-                let transactionsRef = db.collection("transactions")
+                db.collection("transactions").getDocuments { snap, _ in
+                    for doc in snap?.documents ?? [] {
+                        let data = doc.data()
+                        let from = data["fromUsername"] as? String ?? ""
+                        let to = data["toUsername"] as? String ?? ""
+                        let type = (data["type"] as? String ?? "").lowercased()
+                        let amount = data["amount"] as? Double ?? 0.0
 
-                let query1 = transactionsRef
-                    .whereField("fromUserId", isEqualTo: currentUserId)
-                    .whereField("toUserId", isEqualTo: userId)
+                        // Sadece currentUsername ile otherUsername arasındaki işlemleri işle
+                        let involved = (from == currentUsername && to == otherUsername) || (from == otherUsername && to == currentUsername)
+                        if !involved { continue }
 
-                let query2 = transactionsRef
-                    .whereField("fromUserId", isEqualTo: userId)
-                    .whereField("toUserId", isEqualTo: currentUserId)
+                        switch type {
+                            case "lend":
+                                if from == currentUsername { balance += amount }
+                                else if to == currentUsername { balance -= amount }
 
-                // 1. current → other
-                query1.getDocuments { fromSnapshot, _ in
-                    for doc in fromSnapshot?.documents ?? [] {
-                        let amount = doc["amount"] as? Double ?? 0.0
-                        let type = doc["type"] as? String ?? ""
-                        if type == "lend" { balance += amount }
-                        else if type == "pay" { balance -= amount }
-                    }
+                            case "borrow":
+                                if from == currentUsername { balance -= amount }
+                                else if to == currentUsername { balance += amount }
 
-                    // 2. other → current
-                    query2.getDocuments { toSnapshot, _ in
-                        for doc in toSnapshot?.documents ?? [] {
-                            let amount = doc["amount"] as? Double ?? 0.0
-                            let type = doc["type"] as? String ?? ""
-                            if type == "borrow" { balance -= amount }
-                            else if type == "collect" { balance += amount }
+                            case "pay":
+                                if from == currentUsername { balance += amount }
+                                else if to == currentUsername { balance -= amount }
+
+                            case "collect":
+                                if from == currentUsername { balance -= amount }
+                                else if to == currentUsername { balance += amount }
+
+                            default:
+                                break
                         }
-
-                        self.users.append(UserModel(name: name, surname: surname, balance: balance))
-                        totalBalance += balance
-                        group.leave()
                     }
+
+                    self.users.append(UserModel(name: name, surname: surname, balance: balance))
+                    totalBalance += balance
+                    group.leave()
                 }
             }
 
@@ -124,18 +112,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
 
-
     @objc func logoutTapped() {
-        let alert = UIAlertController(
-            title: "Çıkış Yap",
-            message: "Emin misiniz?",
-            preferredStyle: .alert
-        )
-
+        let alert = UIAlertController(title: "Çıkış Yap", message: "Emin misiniz?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Evet", style: .destructive, handler: { _ in
             print("[LOGOUT] - Oturum kapatılıyor...")
             UserDefaults.standard.set(false, forKey: "isLoggedIn")
-            UserDefaults.standard.removeObject(forKey: "currentUserId")
+            UserDefaults.standard.removeObject(forKey: "currentUsername")
 
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let welcomeVC = storyboard.instantiateViewController(withIdentifier: "WelcomeViewController")
@@ -146,14 +128,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 window.makeKeyAndVisible()
             }
         }))
-
         alert.addAction(UIAlertAction(title: "İptal", style: .cancel))
         present(alert, animated: true)
     }
 
     @objc func plusTapped() {
         print("[NAVIGATION] - İşlem ekranına geçiliyor")
-        // TODO: TransactionViewController'a geçiş yapılacak
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let transactionVC = storyboard.instantiateViewController(withIdentifier: "TransactionViewController")
+        navigationController?.pushViewController(transactionVC, animated: true)
     }
 
     @objc func chatTapped() {

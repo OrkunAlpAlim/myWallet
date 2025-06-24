@@ -43,7 +43,7 @@ class RegisterViewController: UIViewController {
 
         print("[FIRESTORE] - Firestore’a kayıt verisi hazırlanıyor...")
         let db = Firestore.firestore()
-        let userRef = db.collection("users").document() // Otomatik benzersiz ID
+        let userRef = db.collection("users").document()
         let userId = userRef.documentID
 
         let userData: [String: Any] = [
@@ -61,13 +61,12 @@ class RegisterViewController: UIViewController {
                 print("[ERROR] - Firestore kayıt hatası: \(error.localizedDescription)")
             } else {
                 UserDefaults.standard.set(true, forKey: "isLoggedIn")
-                UserDefaults.standard.set(userId, forKey: "currentUserId")
-                print("[LOG] - currentUserId kaydedildi: \(userId)")
-                
+                UserDefaults.standard.set(username, forKey: "currentUsername")
+
                 self.showAlert(message: "Kayıt başarılı.") {
                     self.navigateToHome()
                 }
-                
+
                 print("[INFO] - Kayıt başarılı, ana sayfaya geçiliyor")
             }
         }

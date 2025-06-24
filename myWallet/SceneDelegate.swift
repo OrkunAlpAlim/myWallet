@@ -14,10 +14,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
 
         if UserDefaults.standard.bool(forKey: "isLoggedIn") {
-            print("[AUTH] - Kullanıcı giriş yapmış. Ana sayfaya yönlendiriliyor.")
+            let username = UserDefaults.standard.string(forKey: "currentUsername") ?? "Bilinmiyor"
+            print("[AUTH] - Kullanıcı giriş yapmış: \(username). Ana sayfaya yönlendiriliyor.")
             let homeVC = storyboard.instantiateViewController(withIdentifier: "HomeViewController")
             window?.rootViewController = UINavigationController(rootViewController: homeVC)
-        } else {
+        }
+ else {
             print("[AUTH] - Giriş yapılmamış. Welcome ekranı gösteriliyor.")
             let welcomeVC = storyboard.instantiateViewController(withIdentifier: "WelcomeViewController")
             window?.rootViewController = UINavigationController(rootViewController: welcomeVC)

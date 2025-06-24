@@ -83,7 +83,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Giriş Yap"/>
                                 <connections>
-                                    <action selector="loginButtonTapped:" destination="ie0-un-yXM" eventType="touchUpInside" id="sQ8-GL-U92"/>
+                                    <action selector="loginButtonTapped:" destination="ie0-un-yXM" eventType="touchUpInside" id="eha-ua-JcJ"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Kullanıcı Adı" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rFD-o5-Tyi">
@@ -110,8 +110,8 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="passwordTextField" destination="JJM-Lx-72M" id="y6D-Q4-yEh"/>
-                        <outlet property="usernameTextField" destination="rFD-o5-Tyi" id="dOO-k1-347"/>
+                        <outlet property="passwordTextField" destination="JJM-Lx-72M" id="NDr-7H-7jK"/>
+                        <outlet property="usernameTextField" destination="rFD-o5-Tyi" id="KnB-QW-0Vu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lcS-5R-Xi5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -162,7 +162,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Kayıt Ol"/>
                                 <connections>
-                                    <action selector="registerButtonTapped:" destination="3P4-JX-L0h" eventType="touchUpInside" id="cKr-SE-hYB"/>
+                                    <action selector="registerButtonTapped:" destination="3P4-JX-L0h" eventType="touchUpInside" id="zae-72-V4G"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -193,11 +193,11 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="confirmPasswordField" destination="lb7-rD-ytN" id="ah7-Co-7Yv"/>
-                        <outlet property="nameField" destination="Q9g-bn-gEV" id="xEM-x5-4F3"/>
-                        <outlet property="passwordField" destination="lZx-iO-1od" id="1AL-eo-3q6"/>
-                        <outlet property="surnameField" destination="Auk-FO-LrT" id="ma7-7Q-xm9"/>
-                        <outlet property="usernameField" destination="2CQ-6N-3tN" id="gKE-1X-L7U"/>
+                        <outlet property="confirmPasswordField" destination="lb7-rD-ytN" id="xmA-Qn-lGw"/>
+                        <outlet property="nameField" destination="Q9g-bn-gEV" id="Ncq-Ug-e8t"/>
+                        <outlet property="passwordField" destination="lZx-iO-1od" id="agG-SJ-zVy"/>
+                        <outlet property="surnameField" destination="Auk-FO-LrT" id="0Mj-WK-4jS"/>
+                        <outlet property="usernameField" destination="2CQ-6N-3tN" id="0Dp-fP-tov"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bJZ-9p-fob" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -234,7 +234,7 @@
                                 <rect key="frame" x="21" y="161" width="350" height="530"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HDs-g7-cvK">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Toplam Tutar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HDs-g7-cvK">
                                 <rect key="frame" x="21" y="714" width="350" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -256,13 +256,83 @@
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="tableView" destination="HUT-L2-Ht1" id="REv-8W-1QN"/>
-                        <outlet property="totalLabel" destination="HDs-g7-cvK" id="BPK-FL-Q0C"/>
+                        <outlet property="tableView" destination="HUT-L2-Ht1" id="AZZ-Wq-SCQ"/>
+                        <outlet property="totalLabel" destination="HDs-g7-cvK" id="ltG-eG-xbW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dO4-g9-Wb8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="67.938931297709928" y="643.66197183098598"/>
+        </scene>
+        <!--Transaction View Controller-->
+        <scene sceneID="AFY-7e-FgK">
+            <objects>
+                <viewController storyboardIdentifier="TransactionViewController" id="mAy-Dr-y8a" customClass="TransactionViewController" customModule="myWallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nuG-oE-89C">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bQT-36-gUO">
+                                <rect key="frame" x="25" y="244" width="343" height="216"/>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="İşlem Yap" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s3y-4j-4MY">
+                                <rect key="frame" x="108" y="168" width="176" height="36"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Tutar" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Ly-5r-q7C">
+                                <rect key="frame" x="101" y="490" width="190" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="66Z-QR-cXK">
+                                <rect key="frame" x="149" y="625" width="94" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Kaydet"/>
+                                <connections>
+                                    <action selector="saveButtonTapped:" destination="mAy-Dr-y8a" eventType="touchUpInside" id="8qm-Ce-bFs"/>
+                                </connections>
+                            </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="RCN-Gt-Koa">
+                                <rect key="frame" x="48" y="544" width="297" height="32"/>
+                                <segments>
+                                    <segment title="Borç Ver"/>
+                                    <segment title="Borç Al" width="65"/>
+                                    <segment title="Borç Öde"/>
+                                    <segment title="Borç Tahsil"/>
+                                </segments>
+                            </segmentedControl>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Vrn-iV-ggT"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="RCN-Gt-Koa" firstAttribute="top" secondItem="4Ly-5r-q7C" secondAttribute="bottom" constant="20" id="1ku-ia-edO"/>
+                            <constraint firstItem="Vrn-iV-ggT" firstAttribute="trailing" secondItem="RCN-Gt-Koa" secondAttribute="trailing" constant="48" id="4fL-PM-IA7"/>
+                            <constraint firstItem="bQT-36-gUO" firstAttribute="top" secondItem="s3y-4j-4MY" secondAttribute="bottom" constant="40" id="9xA-WC-0Sd"/>
+                            <constraint firstItem="Vrn-iV-ggT" firstAttribute="trailing" secondItem="66Z-QR-cXK" secondAttribute="trailing" constant="150" id="Cgb-wh-3IE"/>
+                            <constraint firstItem="66Z-QR-cXK" firstAttribute="top" secondItem="RCN-Gt-Koa" secondAttribute="bottom" constant="50" id="GIj-qG-Ky5"/>
+                            <constraint firstItem="bQT-36-gUO" firstAttribute="leading" secondItem="Vrn-iV-ggT" secondAttribute="leading" constant="25" id="Jjb-Uu-gna"/>
+                            <constraint firstItem="66Z-QR-cXK" firstAttribute="leading" secondItem="Vrn-iV-ggT" secondAttribute="leading" constant="149" id="JkS-bD-bO5"/>
+                            <constraint firstItem="4Ly-5r-q7C" firstAttribute="leading" secondItem="Vrn-iV-ggT" secondAttribute="leading" constant="101" id="OdA-OH-7oM"/>
+                            <constraint firstItem="Vrn-iV-ggT" firstAttribute="trailing" secondItem="bQT-36-gUO" secondAttribute="trailing" constant="25" id="QTd-Rt-j49"/>
+                            <constraint firstItem="s3y-4j-4MY" firstAttribute="leading" secondItem="Vrn-iV-ggT" secondAttribute="leading" constant="108" id="Tv1-nD-M85"/>
+                            <constraint firstItem="Vrn-iV-ggT" firstAttribute="trailing" secondItem="4Ly-5r-q7C" secondAttribute="trailing" constant="102" id="cZI-wG-0Fr"/>
+                            <constraint firstItem="s3y-4j-4MY" firstAttribute="top" secondItem="Vrn-iV-ggT" secondAttribute="top" constant="50" id="lNA-ZI-Jw5"/>
+                            <constraint firstItem="RCN-Gt-Koa" firstAttribute="leading" secondItem="Vrn-iV-ggT" secondAttribute="leading" constant="48" id="qYA-94-zhH"/>
+                            <constraint firstItem="Vrn-iV-ggT" firstAttribute="trailing" secondItem="s3y-4j-4MY" secondAttribute="trailing" constant="109" id="xTf-gB-VYL"/>
+                            <constraint firstItem="4Ly-5r-q7C" firstAttribute="top" secondItem="bQT-36-gUO" secondAttribute="bottom" constant="30" id="yOf-0B-bAx"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="amountTextField" destination="4Ly-5r-q7C" id="KQX-TP-5rL"/>
+                        <outlet property="transactionTypeSegmented" destination="RCN-Gt-Koa" id="1n8-2o-Lxn"/>
+                        <outlet property="userPicker" destination="bQT-36-gUO" id="zpI-zc-dyy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EMz-b7-ldZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="812.97709923664115" y="643.66197183098598"/>
         </scene>
     </scenes>
     <resources>
