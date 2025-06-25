@@ -1,7 +1,7 @@
 import UIKit
 import FirebaseFirestore
 
-class UserDetailViewController: UIViewController, UITableViewDataSource {
+class UserDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var totalLabel: UILabel!
@@ -16,6 +16,7 @@ class UserDetailViewController: UIViewController, UITableViewDataSource {
         super.viewDidLoad()
         self.title = selectedFullName
         tableView.dataSource = self
+        tableView.delegate = self
         currentUsername = UserDefaults.standard.string(forKey: "currentUsername") ?? ""
         setupDeleteButton()
         fetchTransactions()
@@ -155,4 +156,15 @@ class UserDetailViewController: UIViewController, UITableViewDataSource {
         cell.detailTextLabel?.text = String(format: "%.2f ₺ | %@", tx.amount, tx.timestamp?.description(with: .current) ?? "")
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let tx = transactions[indexPath.row]
+        print("[NAVIGATION] - İşleme tıklandı: \(tx.id)")
+
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let detailVC = storyboard.instantiateViewController(withIdentifier: "TransactionDetailViewController") as! TransactionDetailViewController
+        detailVC.transaction = tx
+        navigationController?.pushViewController(detailVC, animated: true)
+    }
+
 }
