@@ -153,9 +153,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     @objc func chatTapped() {
-        print("[NAVIGATION] - Mesajlaşma ekranına geçiliyor")
-        // TODO: Chat ekranı
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let chatListVC = storyboard.instantiateViewController(withIdentifier: "ChatListViewController")
+        navigationController?.pushViewController(chatListVC, animated: true)
     }
+
 
     // MARK: - TableView Delegate & DataSource
 

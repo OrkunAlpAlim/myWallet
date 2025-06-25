@@ -266,6 +266,86 @@
             </objects>
             <point key="canvasLocation" x="67.938931297709928" y="643.66197183098598"/>
         </scene>
+        <!--Chat List View Controller-->
+        <scene sceneID="gyf-0s-bq9">
+            <objects>
+                <viewController storyboardIdentifier="ChatListViewController" id="2yW-ju-xG1" customClass="ChatListViewController" customModule="myWallet" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="axI-E1-cq3">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="daJ-7z-1qJ">
+                                <rect key="frame" x="16" y="118" width="361" height="666"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="HTe-xt-K8Q"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="daJ-7z-1qJ" firstAttribute="leading" secondItem="axI-E1-cq3" secondAttribute="leadingMargin" id="hmb-nO-Gqv"/>
+                            <constraint firstItem="daJ-7z-1qJ" firstAttribute="bottom" secondItem="HTe-xt-K8Q" secondAttribute="bottom" id="l1l-qf-tHZ"/>
+                            <constraint firstItem="daJ-7z-1qJ" firstAttribute="top" secondItem="HTe-xt-K8Q" secondAttribute="top" id="n1I-Q2-0Py"/>
+                            <constraint firstItem="daJ-7z-1qJ" firstAttribute="trailing" secondItem="axI-E1-cq3" secondAttribute="trailingMargin" id="v2h-Eh-xpL"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="daJ-7z-1qJ" id="rFY-ed-nhH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4hI-LU-d5b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="67.938931297709928" y="1302.8169014084508"/>
+        </scene>
+        <!--Chat View Controller-->
+        <scene sceneID="NIZ-uT-vgB">
+            <objects>
+                <viewController storyboardIdentifier="ChatViewController" id="cfL-vm-FJI" customClass="ChatViewController" customModule="myWallet" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xYz-5j-z60">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="qtg-p4-VTS">
+                                <rect key="frame" x="16" y="118" width="361" height="616"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="60p-qS-zRW">
+                                <rect key="frame" x="16" y="749" width="250" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4gL-4f-vIK">
+                                <rect key="frame" x="286" y="749" width="75" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <connections>
+                                    <action selector="sendButtonTapped:" destination="cfL-vm-FJI" eventType="touchUpInside" id="LHi-aE-QEu"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="GwG-vt-Mo2"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="60p-qS-zRW" firstAttribute="leading" secondItem="GwG-vt-Mo2" secondAttribute="leading" constant="16" id="8NA-Ve-lgO"/>
+                            <constraint firstItem="4gL-4f-vIK" firstAttribute="top" secondItem="qtg-p4-VTS" secondAttribute="bottom" constant="15" id="95z-ab-Wtg"/>
+                            <constraint firstItem="qtg-p4-VTS" firstAttribute="top" secondItem="GwG-vt-Mo2" secondAttribute="top" id="BBG-3n-wy6"/>
+                            <constraint firstItem="qtg-p4-VTS" firstAttribute="leading" secondItem="xYz-5j-z60" secondAttribute="leadingMargin" id="MYE-i9-X3E"/>
+                            <constraint firstItem="qtg-p4-VTS" firstAttribute="centerY" secondItem="xYz-5j-z60" secondAttribute="centerY" id="NWR-K3-9st"/>
+                            <constraint firstItem="GwG-vt-Mo2" firstAttribute="trailing" secondItem="4gL-4f-vIK" secondAttribute="trailing" constant="32" id="dIt-i4-1z5"/>
+                            <constraint firstItem="4gL-4f-vIK" firstAttribute="leading" secondItem="60p-qS-zRW" secondAttribute="trailing" constant="20" id="fzF-Ve-aeo"/>
+                            <constraint firstItem="60p-qS-zRW" firstAttribute="top" secondItem="qtg-p4-VTS" secondAttribute="bottom" constant="15" id="mfi-iq-2xh"/>
+                            <constraint firstItem="qtg-p4-VTS" firstAttribute="trailing" secondItem="xYz-5j-z60" secondAttribute="trailingMargin" id="yCk-0t-ahe"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="messageTextField" destination="60p-qS-zRW" id="K61-zT-cxB"/>
+                        <outlet property="sendButton" destination="4gL-4f-vIK" id="WKz-ro-rN5"/>
+                        <outlet property="tableView" destination="qtg-p4-VTS" id="r9S-2g-C2t"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pyY-e7-iLj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="812.97709923664115" y="1302.8169014084508"/>
+        </scene>
         <!--Transaction View Controller-->
         <scene sceneID="AFY-7e-FgK">
             <objects>
